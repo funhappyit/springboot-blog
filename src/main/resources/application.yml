@@ -12,6 +12,7 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+     
       
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
@@ -34,3 +35,4 @@ spring:
     serialization:
       fail-on-empty-beans: false
       
+  
