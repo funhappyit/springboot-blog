@@ -16,15 +16,10 @@ public class UserService {
 	private UserRepository userRepository;
 	
 	@Transactional
-	public Integer save(User user) {
-		try {
+	public void save(User user) {
+	
 			userRepository.save(user);
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("User"+e.getMessage());
-		}
-		return -1;
+			
 	}
 	
 	

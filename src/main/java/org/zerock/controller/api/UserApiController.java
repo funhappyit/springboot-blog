@@ -20,7 +20,7 @@ public class UserApiController {
 		
 		//실제로 DB에 insert를 하고 아래에서 insert하면 됌
 		user.setRole(RoleType.USER);
-		int result = userService.save(user);
-		return new ResponseDto<Integer>(HttpStatus.OK,result);
+		userService.save(user);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 }
