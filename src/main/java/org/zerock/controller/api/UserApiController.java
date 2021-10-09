@@ -18,10 +18,8 @@ public class UserApiController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	HttpSession session;
 	
-	@PostMapping("/api/user")
+	@PostMapping("/auth/joinProc")
 	public ResponseDto<Integer> save(@RequestBody User user) {
 		
 		//실제로 DB에 insert를 하고 아래에서 insert하면 됌
@@ -30,16 +28,17 @@ public class UserApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 	
+	/*
 	//스프링 시큐리티 
 	@PostMapping("/api/user/login")
-	public ResponseDto<Integer> login(@RequestBody User user){
+	public ResponseDto<Integer> login(@RequestBody User user,HttpSession session){
 		User principal = userService.login(user); //principal 접근 주체 
 		if(principal != null) {
 			session.setAttribute("principal", principal);
 		}
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
-	
+	*/
 	
 	
 	
