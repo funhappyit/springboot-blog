@@ -1,10 +1,10 @@
 package org.zerock.service;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.model.User;
 import org.zerock.repository.UserRepository;
 
@@ -18,9 +18,13 @@ public class UserService {
 	@Transactional
 	public void save(User user) {
 	
-			userRepository.save(user);
+		userRepository.save(user);
 			
 	}
 	
+	@Transactional(readOnly = true) //Select할 때 트랜잭션 시작,서비스 종료 트랜잭션 종료(정합성)
+	public User login(User user) {
+		return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+	}
 	
 }
