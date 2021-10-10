@@ -25,9 +25,6 @@ public class UserApiController {
 	
 	@PostMapping("/auth/joinProc")
 	public ResponseDto<Integer> save(@RequestBody User user) {
-		
-	
-		
 		//실제로 DB에 insert를 하고 아래에서 insert하면 됌
 		user.setRole(RoleType.USER);
 		userService.save(user);
