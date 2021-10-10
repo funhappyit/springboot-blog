@@ -3,8 +3,10 @@ package org.zerock.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.zerock.model.RoleType;
 import org.zerock.model.User;
 import org.zerock.repository.UserRepository;
 
@@ -15,9 +17,16 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	@Transactional
 	public void save(User user) {
-	
+		String rawPassword = user.getPassword(); //1234 원문
+		String encPassword = encoder.encode(rawPassword); //해쉬
+		user.setPassword(encPassword);
+		user.setRole(RoleType.USER);
+		
 		userRepository.save(user);
 			
 	}
