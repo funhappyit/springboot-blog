@@ -2,6 +2,8 @@ package org.zerock.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,11 @@ public class BoardService {
 		board.setCount(0);
 		board.setUser(user);
 		boardRepository.save(board);
+	}
+	
+	public List<Board> boardList(){
+		//findAll로 하면 다가져올 수 있다.
+		return boardRepository.findAll();
 	}
 	/*
 	@Transactional(readOnly = true) //Select할 때 트랜잭션 시작,서비스 종료 트랜잭션 종료(정합성)
