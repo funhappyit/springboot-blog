@@ -5,6 +5,8 @@ package org.zerock.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,9 +31,9 @@ public class BoardService {
 		boardRepository.save(board);
 	}
 	
-	public List<Board> boardList(){
+	public Page<Board> boardList(Pageable pageable){
 		//findAll로 하면 다가져올 수 있다.
-		return boardRepository.findAll();
+		return boardRepository.findAll(pageable);
 	}
 	/*
 	@Transactional(readOnly = true) //Select할 때 트랜잭션 시작,서비스 종료 트랜잭션 종료(정합성)
