@@ -35,6 +35,21 @@ public class BoardService {
 		//findAll로 하면 다가져올 수 있다.
 		return boardRepository.findAll(pageable);
 	}
+	
+	@Transactional(readOnly = true)
+	public Board boardDetail(int id) {
+		return boardRepository.findById(id)
+				.orElseThrow(()->{
+					return new IllegalArgumentException("글 상세보기 실패 : 아이디를 찾을 수 없습니다.");
+				});
+	}
+	
+	@Transactional
+	public void deleteBoard(int id) {
+		boardRepository.deleteById(id);
+			
+	}
+	
 	/*
 	@Transactional(readOnly = true) //Select할 때 트랜잭션 시작,서비스 종료 트랜잭션 종료(정합성)
 	public User login(User user) {
