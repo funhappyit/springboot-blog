@@ -58,6 +58,7 @@ let index = {
 			content:$("#content").val()
 		}
 		
+		
 		$.ajax({
 			type: "PUT",
 			url:"/api/board/"+id,
