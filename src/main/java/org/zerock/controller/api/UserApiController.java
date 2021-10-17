@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.dto.ResponseDto;
@@ -28,6 +29,13 @@ public class UserApiController {
 		//실제로 DB에 insert를 하고 아래에서 insert하면 됌
 		user.setRole(RoleType.USER);
 		userService.save(user);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+	
+	@PutMapping("/user")
+	public ResponseDto<Integer> update(@RequestBody User user){//key=value, x-www-form-urlencoded
+		
+		userService.userUpdate(user);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 	
