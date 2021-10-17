@@ -19,6 +19,8 @@
   </div>
   
   <button type="submit" id="btn-login" class="btn btn-primary">로그인</button>
+  
+  <a href="#"><img src="/image/kakao_login_small.png" /></a>
 </form>
 </div>
 <br/>
