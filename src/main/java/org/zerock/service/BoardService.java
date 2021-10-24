@@ -72,15 +72,15 @@ public class BoardService {
 	}
 	@Transactional
 	public void commentWrite(ReplySaveRequestDto replySaveRequestDto) {
-		User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(()->{
-			return new IllegalArgumentException("댓글 쓰기 실패: 유저 id를 찾을 수 없습니다.");
-		});//영속화 완료 
-		Board board = boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(()->{
-			return new IllegalArgumentException("댓글 쓰기 실패: 게시글 id를 찾을 수 없습니다.");
-		});//영속화 완료 
+//		User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(()->{
+//			return new IllegalArgumentException("댓글 쓰기 실패: 유저 id를 찾을 수 없습니다.");
+//		});//영속화 완료 
+//		Board board = boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(()->{
+//			return new IllegalArgumentException("댓글 쓰기 실패: 게시글 id를 찾을 수 없습니다.");
+//		});//영속화 완료 
 		
-		Reply reply = new Reply();
-		reply.update(user, board, replySaveRequestDto.getContent());
+//		Reply reply = new Reply();
+//		reply.update(user, board, replySaveRequestDto.getContent());
 //		Reply reply = Reply.builder()
 //				.user(user)
 //				.board(board)
@@ -88,7 +88,8 @@ public class BoardService {
 //				.build();
 		
 		
-		replyRepository.save(reply);
+		replyRepository.mSave(replySaveRequestDto.getUserId(),replySaveRequestDto.getBoardId(),replySaveRequestDto.getContent());
+		
 	}
 	
 	

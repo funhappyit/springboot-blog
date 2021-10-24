@@ -79,7 +79,7 @@ let index = {
 		//alert("user의 save함수 호출됨");
 		let data={
 			content:$("#reply-content").val(),
-			userId:$("#boardId").val(),
+			userId:$("#userId").val(),
 			boardId:$("#boardId").val()
 		}
 		$.ajax({
