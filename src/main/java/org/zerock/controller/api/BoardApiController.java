@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.zerock.config.auth.PrincipalDetail;
 import org.zerock.dto.ResponseDto;
 import org.zerock.model.Board;
+import org.zerock.model.Reply;
 import org.zerock.model.RoleType;
 import org.zerock.model.User;
 import org.zerock.service.BoardService;
@@ -41,6 +42,15 @@ public class BoardApiController {
 	@PutMapping("/api/board/{id}")
 	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Board board){
 		boardService.updateBoard(id, board);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+	
+	@PostMapping("/api/board/{boardId}/reply")
+	public ResponseDto<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply,@AuthenticationPrincipal PrincipalDetail principal) {
+		
+
+		
+		boardService.commentWrite(principal.getUser(),boardId, reply);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 	
