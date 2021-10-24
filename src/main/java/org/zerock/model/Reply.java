@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
+import org.zerock.dto.ReplySaveRequestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,5 +45,11 @@ public class Reply {
 	
 	@CreationTimestamp
 	private Timestamp createDate;
+	
+	public void update(User user,Board board, String content) {
+		setUser(user);
+		setBoard(board);
+		setContent(content);
+	}
 
 }

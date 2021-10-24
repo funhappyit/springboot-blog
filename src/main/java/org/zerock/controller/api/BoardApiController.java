@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.config.auth.PrincipalDetail;
+import org.zerock.dto.ReplySaveRequestDto;
 import org.zerock.dto.ResponseDto;
 import org.zerock.model.Board;
 import org.zerock.model.Reply;
@@ -45,12 +46,12 @@ public class BoardApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 	
+	//데이터를 받을때 컨트롤러에서 dto를 만들어서 받는게 좋다.
+	//dto 사용하지 않은 이유는!!
 	@PostMapping("/api/board/{boardId}/reply")
-	public ResponseDto<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply,@AuthenticationPrincipal PrincipalDetail principal) {
-		
-
-		
-		boardService.commentWrite(principal.getUser(),boardId, reply);
+	//public ResponseDto<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply,@AuthenticationPrincipal PrincipalDetail principal) {
+	public ResponseDto<Integer> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto) {
+		boardService.commentWrite(replySaveRequestDto);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 	
