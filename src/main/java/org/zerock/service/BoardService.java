@@ -19,20 +19,18 @@ import org.zerock.repository.BoardRepository;
 import org.zerock.repository.ReplyRepository;
 import org.zerock.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 //스프링이 컴포넌트 스캔을 통해서 Bean에 등록을 해줌.Ioc를 해준다.
 @Service
+@RequiredArgsConstructor
 public class BoardService {
 
-	@Autowired
-	private BoardRepository boardRepository;
+	private final BoardRepository boardRepository;
 	
-	@Autowired
-	private ReplyRepository replyRepository;
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	
+	private final ReplyRepository replyRepository;
+	private final UserRepository userRepository;
+
 	@Transactional
 	public void write(Board board,User user) {//title,content
 		board.setCount(0);
