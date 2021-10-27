@@ -3,6 +3,7 @@ package org.zerock.model;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,7 +52,9 @@ public class Board {
 	@JoinColumn(name="userId")
 	private User user; //DB는 오브젝트를 저장할 수 없다. FK,자바는 오브젝트를 저장할 수 있다.
 	
-	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER) //mappedBy 연관관계의 주인이 아니다(난 FK가 아니에요) DB에 칼럼을 만들지 마세요
+	//RERSIST 실제 데이터베이스에 반영 REMOVE board 게시물을 지울때 댓글들을 다 지운다.
+	//ALL PERSIST랑 REMOVE모두 반영 
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) //mappedBy 연관관계의 주인이 아니다(난 FK가 아니에요) DB에 칼럼을 만들지 마세요
 	@JsonIgnoreProperties({"board"})
 	@OrderBy("id desc")
 	private List<Reply> replys;
