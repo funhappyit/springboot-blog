@@ -90,6 +90,10 @@ public class BoardService {
 		
 	}
 	
+	@Transactional
+	public void commentDelete(int replyId) {
+		replyRepository.deleteById(replyId);
+	}
 	
 	
 	/*
